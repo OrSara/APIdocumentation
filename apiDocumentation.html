@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link rel="stylesheet" href="apiStyle.css">
+    <script src="apiScript.js"></script>
+    
+</head>
+<body>
+    <section>
+        <h1>API Documentation</h1>
+        <h3>This is an API to price European Call and Put options using the Black-Scholes model and MonteCarlo simulations.</h3>
+        <div>
+            <h2>Black-Scholes model</h2>
+            <h3>This endpoint uses the solution of the Black-Scholes model and returns the mean price of European Call and Put options.</h3>
+            <h4>The endpoint is</h4>
+            <div class="endpoint">
+                <div class="endpoint-container">
+                    <a><p>https://pricingapi-t8sw.onrender.com/BS?</p></a>
+                </div>
+            </div>
+            <h4>The following parameters are optional:</h4>
+            <nav>
+                <ul>
+                    <li>S0: initial stock price, default is 1;</li>
+                    <li>K: strike price, default is 1.1;</li>
+                    <li>T: time to maturity (in years), default is 1;</li>
+                    <li>r: risk-free rate, default is the CBOE interest rate on the 10 year Treasury bill;</li>
+                </ul>
+            </nav>
+            <h4>The following parameter is required:</h4>
+            <nav>
+                <ul>
+                    <li>sigma: represents the underlying volatility.</li>
+                </ul>
+            </nav>
+            <h4>An example of a GET request for this endpoint is:</h4>
+            <div class="endpoint">
+                <div class="endpoint-wrapper">
+                    <a href="https://pricingapi-t8sw.onrender.com/BS?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&sigma=0.4" target="_blank"><p>https://pricingapi-t8sw.onrender.com/BS?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&sigma=0.4</p></a>
+                </div>
+            </div>
+            <h4>The response format is:</h4>
+            <pre>
+                <code class="code-text">
+                    <span class="line-number">1</span>{
+                    <span class="line-number">2</span>  "BlackScholes": {
+                    <span class="line-number">3</span>&emsp;    "mean price European call": 0.9886176335002623,
+                    <span class="line-number">4</span>&emsp;    "mean price European put": 3.0157534943547575e-114
+                    <span class="line-number">5</span>   }
+                    <span class="line-number">6</span>}
+                </code>
+            </pre>
+        </div>
+        
+        <div>
+            <h2>Geometric Brownian Motion</h2>
+            <h3>This endpoint uses MonteCarlo technique to simulate Geometric Brownian Motion paths and return the mean price of European Put and Call options and their variance.</h3>
+            <h4>The endpoint is</h4>
+            <div class="endpoint">
+                <div class="endpoint-container">
+                    <a><p>https://pricingapi-t8sw.onrender.com/GBM?</p></a>
+                </div>
+            </div>
+            <h4>The following parameters are optional:</h4>
+            <nav>
+                <ul>
+                    <li>M: number of simulations, default is 1000;</li>
+                    <li>S0: initial stock price, default is 1;</li>
+                    <li>K: strike price, default is 1.1;</li>
+                    <li>T: time to maturity (in years), default is 1;</li>
+                    <li>r: risk-free rate, default is the CBOE interest rate on the 10 year Treasury bill;</li>
+                </ul>
+            </nav>
+            <h4>The following parameter is required:</h4>
+            <nav>
+                <ul>
+                    <li>sigma: represents the underlying volatility.</li>
+                </ul>
+            </nav>
+            <h4>An example of a GET request for this endpoint is:</h4>
+            <div class="endpoint">
+                <div class="endpoint-container">
+                    <a><p>https://pricingapi-t8sw.onrender.com/BS?</p></a>
+                </div>
+            </div>
+            <h4>An example of a GET request for this endpoint is:</h4>
+            <div class="endpoint">
+                <div class="endpoint-wrapper">
+                    <a href="https://pricingapi-t8sw.onrender.com/GBM?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&sigma=0.4" target="_blank"><p>https://pricingapi-t8sw.onrender.com/GBM?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&sigma=0.4</p></a>
+                </div>
+            </div>
+            <h4>The response format is:</h4>
+            <pre>
+                <code class="code-text">
+                    <span class="line-number">1</span>{
+                    <span class="line-number">2</span>  "GBM": {
+                    <span class="line-number">3</span>&emsp;    "mean price European call": 0.12800138909218364,
+                    <span class="line-number">4</span>&emsp;    "mean price European put": 0.21083415398576202,
+                    <span class="line-number">5</span>&emsp;    "variance European call": 0.0001280654378272862,
+                    <span class="line-number">6</span>&emsp;    "variance European put": 0.000210939650191506
+                    <span class="line-number">7</span>   }
+                    <span class="line-number">8</span>}
+                </code>
+            </pre>
+        </div>
+
+        <div>
+            <h2>Heston model</h2>
+            <h3>This endpoint uses MonteCarlo Simulations to simulate the Heston model and return the mean price of European Put and Call options and their variance.</h3>
+            <h4>The endpoint is</h4>
+            <div class="endpoint">
+                <div class="endpoint-container">
+                    <a><p>https://pricingapi-t8sw.onrender.com/Heston?</p></a>
+                </div>
+            </div>
+            <h4>The following parameters are optional:</h4>
+            <nav>
+                <ul>
+                    <li>M: number of simulations, default is 1000;</li>
+                    <li>S0: initial stock price, default is 1;</li>
+                    <li>K: strike price, default is 1.1;</li>
+                    <li>T: time to maturity (in years), default is 1;</li>
+                    <li>r: risk-free rate, default is the CBOE interest rate on the 10 year Treasury bill;</li>
+                </ul>
+            </nav>
+            <h4>The following parameters are required:</h4>
+            <nav>
+                <ul>
+                    <li>v0: initial variance;</li>
+                    <li>rho: correlation between asset returns and variance;</li>
+                    <li>kappa: mean-reversion speed for the variance;</li>
+                    <li>theta: long-term mean of the variance process;</li>
+                    <li>sigma: volatility of the variance.</li>
+                </ul>
+            </nav>
+            <h4>An example of a GET request for this endpoint is:</h4>
+            <div class="endpoint">
+                <div class="endpoint-wrapper">
+                    <a href="https://pricingapi-t8sw.onrender.com/Heston?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&kappa=0.1&theta=0.08&sigma=0.4" target="_blank"><p>https://pricingapi-t8sw.onrender.com/Heston?SO=1&K=1.1&T=1&r=0.02&v0=0.3&rho=-0.2&kappa=0.1&theta=0.08&sigma=0.4</p></a>
+                </div>
+            </div>
+            <h4>The response format is:</h4>
+            <pre>
+                <code class="code-text">
+                    <span class="line-number">1</span>{
+                    <span class="line-number">2</span>  "Heston": {
+                    <span class="line-number">3</span>&emsp;    "mean price European call": 0.12416830660665312,
+                    <span class="line-number">4</span>&emsp;    "mean price European put": 0.2164843918913914,
+                    <span class="line-number">5</span>&emsp;    "variance European call": 0.00012423043736190794,
+                    <span class="line-number">6</span>&emsp;    "variance European put": 0.0002165927153366947
+                    <span class="line-number">7</span>   }
+                    <span class="line-number">8</span>}
+                </code>
+            </pre>
+        </div>
+    </section>
+</body>
+</html>
